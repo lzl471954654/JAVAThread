@@ -11,9 +11,9 @@ public class LockAndConditionDemo implements Runnable {
         Thread thread = new Thread(new LockAndConditionDemo());
         thread.start();
         Thread.sleep(2000);
-        lock.lock();
-        condition.signalAll();
-        lock.unlock();
+        //lock.lock();
+        //condition.signalAll();
+        //lock.unlock();
     }
 
     @Override

@@ -1,9 +1,13 @@
 package 重入锁;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReenTrantLockDemo implements Runnable {
-    public static ReentrantLock lock = new ReentrantLock();
+    public static ReentrantLock lock = new ReentrantLock(false);
     public static int i = 0;
     public static void main(String[] args) throws InterruptedException {
         ReenTrantLockDemo demo = new ReenTrantLockDemo();
@@ -22,11 +26,11 @@ public class ReenTrantLockDemo implements Runnable {
 
     @Override
     public void run() {
-        for (int j = 0;j<10000;j++){
+        for (int j = 0;j<1000;j++){
             lock.lock();
             try {
                 i++;
-                //System.out.println(Thread.currentThread().getName());
+                System.out.println(Thread.currentThread().getName());
             }finally {
                 lock.unlock();
             }

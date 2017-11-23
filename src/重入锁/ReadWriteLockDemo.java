@@ -36,26 +36,30 @@ public class ReadWriteLockDemo  {
         final ReadWriteLockDemo demo = new ReadWriteLockDemo();
         Runnable readRun = ()->{
             try{
-                //demo.readOperation(readLock);
-                demo.readOperation(RLock);
+                demo.readOperation(readLock);
+                //demo.readOperation(RLock);
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
         };
         Runnable writeRun = ()->{
             try {
-                //demo.writeOperation(writeLock,new Random().nextInt());
-                demo.writeOperation(RLock,new Random().nextInt());
+                demo.writeOperation(writeLock,new Random().nextInt());
+                //demo.writeOperation(RLock,new Random().nextInt());
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
         };
-
+        Long start = System.currentTimeMillis();
         for (int i = 0;i<10;i++){
             new Thread(readRun).start();
         }
+        Long end = System.currentTimeMillis();
+        //System.out.println(end-start);
         for (int i = 0;i<10;i++){
             new Thread(writeRun).start();
         }
+        end = System.currentTimeMillis();
+        //System.out.println(end-start);
     }
 }
